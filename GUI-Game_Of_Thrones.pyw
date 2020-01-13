@@ -59,7 +59,7 @@ def WinPercentage():
 
     king = variable.get()
 
-    KingInfo = df.query(f'attacker_1 == "{king}"')
+    KingInfo = df.query(f'attacker_king == "{king}"')
 
     Tab1 = pd.DataFrame(KingInfo, columns=['attacker_king','attacker_outcome'])
 
@@ -78,7 +78,7 @@ def WinPercentage():
     #Now, we will be reviewing if the user wants to receive a confirmation email and sends one if so.
     SendEmail = var1.get()
     Email = e1.get()
-    if Email == "":
+    if Email == "" and SendEmail== 1:
         Error1()
     if SendEmail == 1:
         gmail_user = 'samecodetesting@gmail.com'
@@ -120,12 +120,14 @@ def WarFreq():
 
     plt.hist(Freq, bins=5, color='g', linewidth = 1, label='Number of Wars per Year')
     plt.title('Number of wars per year')
-
+    plt.xticks(np.arange(298, 301, 1))
+    plt.xlabel('Year')
+    plt.ylabel('# of Wars')
 
     #Now, we will be reviewing if the user wants to receive a confirmation email and sends one if so.
     SendEmail = var1.get()
     Email = e1.get()
-    if Email == "":
+    if Email == "" and SendEmail== 1:
         Error1()
     if SendEmail == 1:
         gmail_user = 'samecodetesting@gmail.com'
@@ -164,14 +166,16 @@ def MostWars():
 
     df1 = df.groupby('region')['battle_number'].nunique()
 
-    df1.plot(kind='pie',legend=True)
-    plt.legend(loc='best')
+    df1.plot(kind='pie',autopct='%.2f')
+    plt.ylabel('')
+    plt.legend(loc="best")
     plt.title(f'Breakdown of most war affected areas')
 
 
     #Now, we will be reviewing if the user wants to receive a confirmation email and sends one if so. We also confirm that the field is not blank before trying to send the email
     SendEmail = var1.get()
-    if Email == "":
+    Email = e1.get()
+    if Email == "" and SendEmail== 1:
         Error1()
     if SendEmail == 1:
         gmail_user = 'samecodetesting@gmail.com'
@@ -216,7 +220,8 @@ Checkbutton(master, text="Click here to be emailed a confirmation of the report!
 e1 = tk.Entry(master)
 e1.grid(row=9, column=1,pady=0)
 
-OPTIONS = ['Lannister','Stark','Greyjoy','Bolton','Baratheon','Darry','Brotherhood without Banners','Frey','Free folk','Brave Companions','Bracken']
+OPTIONS = ['Joffrey/Tommen Baratheon','Robb Stark','Balon/Euron Greyjoy','Stannis Baratheon']
+
 
 
 variable = StringVar(master)
