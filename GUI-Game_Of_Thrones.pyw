@@ -1,9 +1,7 @@
-import time, pyodbc, csv, numpy as np, pandas as pd, datetime, os, getpass,  xlsxwriter, glob, requests, smtplib, matplotlib.pyplot as plt
+import time, pyodbc, csv, numpy as np, pandas as pd, requests, smtplib, matplotlib.pyplot as plt
 from tkinter import *
 import tkinter as tk
-import tkinter.ttk as ttk
 from PIL import ImageTk, Image
-from datetime import datetime
 from io import BytesIO
 #Labeling the tkinter variable
 master = tk.Tk()
@@ -52,17 +50,19 @@ def WinPercentage():
 
     df = pd.read_csv(url, error_bad_lines=False)
 
+    #Changing strings into values for ease of calculations
     df = df.replace(to_replace ="win",
                  value =1)
     df = df.replace(to_replace ="loss",
                  value =0)
-
+    #getting the input from the selection made on the master window
     king = variable.get()
 
+    #quering for the selection
     KingInfo = df.query(f'attacker_king == "{king}"')
 
     Tab1 = pd.DataFrame(KingInfo, columns=['attacker_king','attacker_outcome'])
-
+    #calculating win percentage and visualing the result
     winpercentage = Tab1['attacker_outcome'].mean()
     losspercentage = 1 - winpercentage
     breakdown = [winpercentage, losspercentage]
@@ -118,13 +118,14 @@ def WarFreq():
 
     Freq = df['year']
 
+    #configuing the chart
     plt.hist(Freq, bins=5, color='g', linewidth = 1, label='Number of Wars per Year')
     plt.title('Number of wars per year')
     plt.xticks(np.arange(298, 301, 1))
     plt.xlabel('Year')
     plt.ylabel('# of Wars')
 
-    #Now, we will be reviewing if the user wants to receive a confirmation email and sends one if so.
+    #Now, we will be reviewing if the user wants to receive a confirmation email and sends one if so. If no email is added, but the checkbox is selected, there will be an error message
     SendEmail = var1.get()
     Email = e1.get()
     if Email == "" and SendEmail== 1:
@@ -219,11 +220,11 @@ Checkbutton(master, text="Click here to be emailed a confirmation of the report!
 
 e1 = tk.Entry(master)
 e1.grid(row=9, column=1,pady=0)
-
+#optiosn for checkbox
 OPTIONS = ['Joffrey/Tommen Baratheon','Robb Stark','Balon/Euron Greyjoy','Stannis Baratheon']
 
 
-
+#checkbox
 variable = StringVar(master)
 variable.set(OPTIONS[0]) # default value
 
@@ -260,5 +261,6 @@ panel = tk.Label(master, image=img).grid(row=0,
 
 
 tk.mainloop()
+
 
 
