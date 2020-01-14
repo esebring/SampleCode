@@ -81,8 +81,8 @@ def WinPercentage():
     if Email == "" and SendEmail== 1:
         Error1()
     if SendEmail == 1:
-        gmail_user = 'samecodetesting@gmail.com'
-        gmail_password = 'qwer123$'
+        gmail_user = 'ericsebringtestcode@gmail.com'
+        gmail_password = 'Mac12345^'
 
         sent_from = gmail_user
         to = [f'{Email}']
@@ -131,8 +131,8 @@ def WarFreq():
     if Email == "" and SendEmail== 1:
         Error1()
     if SendEmail == 1:
-        gmail_user = 'samecodetesting@gmail.com'
-        gmail_password = 'qwer123$'
+        gmail_user = 'ericsebringtestcode@gmail.com'
+        gmail_password = 'Mac12345^'
 
         sent_from = gmail_user
         to = [f'{Email}']
@@ -179,8 +179,8 @@ def MostWars():
     if Email == "" and SendEmail== 1:
         Error1()
     if SendEmail == 1:
-        gmail_user = 'samecodetesting@gmail.com'
-        gmail_password = 'qwer123$'
+        gmail_user = 'ericsebringtestcode@gmail.com'
+        gmail_password = 'Mac12345^'
 
         sent_from = gmail_user
         to = [f'{Email}']
@@ -261,6 +261,4 @@ panel = tk.Label(master, image=img).grid(row=0,
 
 
 tk.mainloop()
-
-
 
